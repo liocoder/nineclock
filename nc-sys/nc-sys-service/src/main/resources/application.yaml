@@ -1,0 +1,62 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: sys-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/nc_sys?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: root
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # 配置nacos 服务端地址
+  redis:
+    host: localhost
+    port: 6379
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto #数据库主键生成策略为数据库自增
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.itheima.sys.entity
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.itheima: debug
+nc:
+  security:
+    permitUrlList:  #匿名可以访问api接口
+    - /user/query
+    - /actuator/**
+    - /test
+    - /sms/code     # 发送验证码
+    - /swagger-ui.html  # swagger
+    - /webjars/**
+    - /v2/**
+    - /swagger-resources/**
+    - /user/register  # 用户注册
+    - /industry/list # 注册后查询行业信息
+    - /company/list
+    - /company/applyJoinCompany
+    - /companyUser/integral # 发布文档修改积分
+aliyun:
+  sms:
+    enable: true
+    accessKeyId: LTAI5tSHpxqdR2wuXSvcviUe
+    accessKeySecret: Kt07VaiyYD9So7a7JYHjkJuunhbr8V
+    signName: 黑马乐优商城 # 签名名称
+    domain: dysmsapi.aliyuncs.com # 域名
+  oss:
+    enable: true
+    accessKeyId: LTAI5tFDhQ2iWQbwcPnqNgx8
+    accessKeySecret: kuKmx9wepT5xEDPM9ybSBw93X2e10C
+    bucket: bj161
+    endpoint: oss-cn-beijing.aliyuncs.com
+    url: http://${aliyun.oss.bucket}.${aliyun.oss.endpoint}
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: ${spring.application.name}

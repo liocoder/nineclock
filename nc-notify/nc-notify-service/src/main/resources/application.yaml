@@ -1,0 +1,30 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: notify-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr:  127.0.0.1:8848 # 配置nacos 服务端地址
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: nineclock
+rocketmq:
+  name-server: 127.0.0.1:9876
+nc:
+  jpush:
+    #极光平台应用的唯一标识
+    appKey: 6aca5acdfb171a73ae4c5225
+    #用于服务器端 API 调用时与 AppKey 配合使用达到鉴权的目的
+    masterSecret: 0fea2d27d800930a11b10610
+  security:
+    permitUrlList:  #匿名可以访问api接口
+    - /actuator/**
+    - /swagger-ui.html
+    - /webjars/**
+    - /v2/**
+    - /swagger-resources/**
+    - /test

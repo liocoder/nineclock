@@ -1,0 +1,17 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: search-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr:  127.0.0.1:8848 # 配置nacos 服务端地址
+nc:
+  security:
+    permitUrlList:  #匿名可以访问api接口
+    - /actuator/**
+    - /swagger-ui.html
+    - /webjars/**
+    - /v2/**
+    - /swagger-resources/**

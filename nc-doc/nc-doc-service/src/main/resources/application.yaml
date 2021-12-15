@@ -1,0 +1,44 @@
+server:
+  port: 8084
+spring:
+  redis:
+    host: localhost
+    port: 6379
+  application:
+    #服务别名
+    name: document-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/nc_doc?useUnicode=true&characterEncoding=UTF8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: root
+  cloud:
+    nacos:
+      discovery:
+        server-addr:  127.0.0.1:8848 # 配置nacos 服务端地址
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.itheima.document.entity
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.itheima: debug
+nc:
+  security:
+    permitUrlList:  #匿名可以访问api接口
+    - /actuator/**
+    - /swagger-ui.html
+    - /webjars/**
+    - /v2/**
+    - /swagger-resources/**
+    - /document/page
+aliyun:
+  green:
+    enable: true #开启该配置后，自动配置类才会实例化AliyunGreenTemplate对象
+    accessKeyId: LTAI5tFDhQ2iWQbwcPnqNgx8
+    accessKeySecret: kuKmx9wepT5xEDPM9ybSBw93X2e10C
+    scenes: porn,terrorism #检测场景：色情，暴力

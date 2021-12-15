@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.itcast.aliyun.auto.AliyunSmsAutoConfiguration,\
+  cn.itcast.aliyun.auto.AliyunOssAutoConfiguration,\
+  cn.itcast.aliyun.auto.AliyunGreenAutoConfiguration
